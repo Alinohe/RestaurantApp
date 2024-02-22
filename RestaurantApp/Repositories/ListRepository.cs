@@ -1,16 +1,18 @@
 ﻿
-namespace RestaurantApp.Repositories
-{
-    using RestaurantApp.Entities;
-    public class ListRepository<T> : IRepository<T> where T : class, IEntity, new()
+namespace RestaurantApp.Repositories;   
+using RestaurantApp.Entities;
+
+    public class ListRepository<T> 
+    where T : class, IEntity, new()
 
     {
-        protected readonly List<T> _items = new();
+        private readonly List<T> _items = new();
 
         public IEnumerable<T> GetAll()
         {
             return _items.ToList();
         }
+
         public T GetById(int id)
         {
             return _items.Single(item => item.Id == id);
@@ -32,4 +34,3 @@ namespace RestaurantApp.Repositories
 
         }
     }
-}

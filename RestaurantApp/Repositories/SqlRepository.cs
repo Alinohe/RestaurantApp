@@ -6,9 +6,9 @@ using RestaurantApp.Entities;
 
 public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
-    private readonly DbContext _dbContext;
     private readonly DbSet<T> _dbSet;
-
+    private readonly DbContext _dbContext;
+    
     public SqlRepository(DbContext dbContext)
     {
         _dbContext = dbContext;
