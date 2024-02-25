@@ -1,44 +1,57 @@
 ﻿using RestaurantApp.Data;
 using RestaurantApp.Entities;
 using RestaurantApp.Repositories;
+using RestaurantApp.Repositories.Extensions;
 
-var customerRepository = new SqlRepository<Customers>(new RestaurantAppDbContext());
+var customerRepository = new SqlRepository<Customers>(new RestaurantAppDbContext(), CustomerAdded);
+customerRepository.ItemAdded += CustomerRepositoryOnItemAdded;
+
+static void CustomerRepositoryOnItemAdded(object? sender, Customers e)
+{
+    Console.WriteLine($"CustomerAdded => {e.FirstName} from {sender?.GetType().Name}");
+}
+
 AddNormal(customerRepository);
 AddVegetarian(customerRepository);
 AddVegan(customerRepository);
 WriteAllToConsole(customerRepository);
 
-static void AddNormal(IWriteRepository<FTNormal> customerRepository)
+static void CustomerAdded(object item)
 {
-    customerRepository.Add(new FTNormal { FirstName = "Adam" });
-    customerRepository.Add(new FTNormal { FirstName = "Piotr" });
-    customerRepository.Add(new FTNormal { FirstName = "Zuzia" });
-    customerRepository.Save();
-
+    var customer = (Customers)item;
+    Console.WriteLine($"{customer.FirstName} added");
 }
 
-static void AddVegetarian(IWriteRepository<FTVegetarian> customerRepository)
-{
-    customerRepository.Add(new FTVegetarian { FirstName = "Przemek" });
-    customerRepository.Add(new FTVegetarian { FirstName = "Tomek" });
-    customerRepository.Save();
-
-}
-
-static void AddVegan(IWriteRepository<FTVegan> customerRepository)
-{
-    customerRepository.Add(new FTVegan { FirstName = "Brian" });
-    customerRepository.Add(new FTVegan { FirstName = "Jesica" });
-    customerRepository.Save();
-
-}
-static void WriteAllToConsole(IReadRepository<IEntity> repository)
-{
-    var items = repository.GetAll();
-    foreach (var item in items)
+    static void AddNormal(IWriteRepository<FoodTypeNormal> customerRepository)
     {
-        Console.WriteLine(item);
+        customerRepository.Add(new FoodTypeNormal { FirstName = "Adam" });
+        customerRepository.Add(new FoodTypeNormal { FirstName = "Piotr" });
+        customerRepository.Add(new FoodTypeNormal { FirstName = "Zuzia" });
+        customerRepository.Save();
+
     }
-}
 
+    static void AddVegetarian(IWriteRepository<FoodTypeVegetarian> customerRepository)
+    {
+        customerRepository.Add(new FoodTypeVegetarian { FirstName = "Przemek" });
+        customerRepository.Add(new FoodTypeVegetarian { FirstName = "Tomek" });
+        customerRepository.Save();
 
+    }
+
+    static void AddVegan(IWriteRepository<FoodTypeVegan> customerRepository)
+    {
+        customerRepository.Add(new FoodTypeVegan { FirstName = "Brian" });
+        customerRepository.Add(new FoodTypeVegan { FirstName = "Jesica" });
+        customerRepository.Save();
+
+    }
+    // customerRepository.AddBatch(customer);
+    static void WriteAllToConsole(IReadRepository<IEntity> repository)
+    {
+        var items = repository.GetAll();
+        foreach (var item in items)
+        {
+            Console.WriteLine(item);
+        }
+    }
