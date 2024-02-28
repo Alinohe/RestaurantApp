@@ -32,7 +32,7 @@ namespace RestaurantApp
                 sum += item;
             }
 
-            Assert.AreEqual(10.7, sum);
+            Assert.That(sum, Is.EqualTo(10.7));
         }
 
         [Test]

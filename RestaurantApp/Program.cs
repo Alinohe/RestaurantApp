@@ -3,6 +3,7 @@ using RestaurantApp.Entities;
 using RestaurantApp.Repositories;
 using RestaurantApp.Repositories.Extensions;
 
+
 var customerRepository = new SqlRepository<Customers>(new RestaurantAppDbContext(), CustomerAdded);
 customerRepository.ItemAdded += CustomerRepositoryOnItemAdded;
 
