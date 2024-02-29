@@ -4,6 +4,6 @@
     public class FoodTypeVegan : Food
     {
         public override string ToString() => base.ToString() + "  (Vegan)";
-
-    }
+    public override bool isVegan() => true;
+}
 

@@ -14,7 +14,8 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
         _dbContext = dbContext;
         _dbSet = _dbContext.Set<T>();
         _itemAddedCallBack = itemAddedCallBack;
-    }
+    }  
+ 
     public event EventHandler<T> ItemAdded;
 
     public IEnumerable<T> GetAll()
