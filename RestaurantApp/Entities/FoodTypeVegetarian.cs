@@ -1,8 +1,7 @@
-﻿namespace RestaurantApp.Entities
+﻿namespace RestaurantApp.Entities;
+using RestaurantApp.Repositories;
+public class FoodTypeVegetarian : Food
 {
-    public class FoodTypeVegetarian : Customers
-    {
-        public override string ToString() => base.ToString() + "  (Vegetarian)";
+    public override string ToString() => base.ToString() + "  (Vegetarian)";
 
-    }
 }

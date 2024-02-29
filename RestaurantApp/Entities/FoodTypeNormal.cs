@@ -1,8 +1,8 @@
-﻿namespace RestaurantApp.Entities
-{
-    public class FoodTypeNormal : Customers
+﻿namespace RestaurantApp.Entities;
+using RestaurantApp.Repositories;
+public class FoodTypeNormal : Food
     {
         public override string ToString() => base.ToString() + "  (Normal)";
 
     }
-}
+
