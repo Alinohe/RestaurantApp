@@ -21,7 +21,7 @@ WriteAllToConsole(foodRepository);
 static void FoodAdded(object item)
 {
     var food = (Food)item;
-    Console.WriteLine($"{Food.Name} added");
+    Console.WriteLine($"{food.Name} added");
 }
 
 static void AddNormal(IWriteRepository<FoodTypeNormal> foodRepository)
@@ -41,7 +41,7 @@ static void AddVegetarian(IWriteRepository<FoodTypeVegetarian> foodRepository)
 
 }
 
-static void AddVegan(IWriteRepository<FoodTypeVegan> foodRepository);
+static void AddVegan(IWriteRepository<FoodTypeVegan> foodRepository)
 {
     foodRepository.Add(new FoodTypeVegan { Name = "Salad" });
     foodRepository.Add(new FoodTypeVegan { Name = "Avocado" });
